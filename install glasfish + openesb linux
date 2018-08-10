@@ -1,0 +1,97 @@
+GLASSFISH SERVER + OPENESB
+===================
+REFF :
+
+1. https://blog.idrsolutions.com/2014/02/tutorial-setting-up-glassfish-on-a-linux-server/
+2. https://superuser.com/questions/1187456/how-can-i-start-the-glassfish-on-ubuntu-16-04
+3. https://stackoverflow.com/questions/23827820/glassfish-server-start-domain-domain1-wont-start
+4. https://idroot.net/linux/install-glassfish-ubuntu-16-04/
+5. Deploy Glassfish to OpenESB
+http://www.logicoy.com/wikilogicoy/Wiki.jsp@page=DeployingAndTestingTheCompositeApplication.html
+
+UBUNTU 16.04
+==============
+1. sudo apt-get update
+sudo apt-get upgrade
+java -version
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+java -version
+
+## SAMPAI STEP INI JUGA BISA ##
+
+2. download glassfish terbaru
+https://javaee.github.io/glassfish/download
+- cd home
+- http://download.java.net/glassfish/4.1.2/release/glassfish-4.1.2.zip  (manual simpan di home)
+- atau wget http://download.java.net/glassfish/4.1.2/release/glassfish-4.1.2.zip
+- unzip glassfish-4.1.2.zip
+- glassfish4/bin/asadmin start-domain
+
+3. Allow port firewall
+- sudo ufw allow 8080
+- sudo ufw allow 4848
+- jika masih tidak jalan juga minta allow di routing
+
+
+4. netstat -tlnp
+pastikan sudah aktif service 8080 dan 4848
+
+5. change and enable password admin login (4848)
+- glassfish4/bin/asadmin start-domain
+- glassfish4/bin/asadmin change-admin-password
+@username : admin
+@default password : blank aja (enter aja tidak usah diisi)
+@new password admin : admin
+@new same password : admin
+- glassfish4/bin/asadmin enable-secure-admin
+- glassfish4/bin/asadmin stop-domain
+- glassfish4/bin/asadmin start-domain
+
+6. We can visit http://ip-address:8080/ to check the homepage of GlassFish Server and http://ip-address:4848/ to get the admin login
+
+
+CENTOS (SAMA AJA CUMAN BEDA PERINTAH)
+================
+1. sudo apt-get update
+sudo apt-get upgrade
+java -version
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+java -version
+
+## SAMPAI STEP INI JUGA BISA ##
+
+2. download glassfish terbaru
+https://javaee.github.io/glassfish/download
+- cd home
+- http://download.java.net/glassfish/4.1.2/release/glassfish-4.1.2.zip  (manual simpan di home)
+- atau wget http://download.java.net/glassfish/4.1.2/release/glassfish-4.1.2.zip
+- unzip glassfish-4.1.2.zip
+- glassfish4/bin/asadmin start-domain
+
+3. Allow port firewall
+- sudo ufw allow 8080
+- sudo ufw allow 4848
+- jika masih tidak jalan juga minta allow di routing
+
+
+4. netstat -tlnp
+pastikan sudah aktif service 8080 dan 4848
+
+5. change and enable password admin login (4848)
+- glassfish4/bin/asadmin start-domain
+- glassfish4/bin/asadmin change-admin-password
+@username : admin
+@default password : blank aja (enter aja tidak usah diisi)
+@new password admin : admin
+@new same password : admin
+- glassfish4/bin/asadmin enable-secure-admin
+- glassfish4/bin/asadmin stop-domain
+- glassfish4/bin/asadmin start-domain
+
+6. We can visit http://ip-address:8080/ to check the homepage of GlassFish Server and http://ip-address:4848/ to get the admin login 
